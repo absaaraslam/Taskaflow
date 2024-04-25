@@ -1,0 +1,50 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+<style>
+	.categoryBtn {
+		background-image: linear-gradient(to left, #fbe7a2,#fdf5da); /* Adjust colors */
+		border: none;
+		color: black;
+		padding: 10px 20px;
+		border-radius: 10px;
+		font-size: 20px;
+	}
+	.categoryBtn:hover{
+			color: #30294d;
+	}
+
+	.taskBtn {
+		background-image: linear-gradient(to left, #cdc1fb,#a782f7); /* Adjust colors */
+
+		border: none;
+		color: black;
+		padding: 10px 20px;
+		border-radius: 10px;
+		font-size: 20px;
+	}
+	.taskBtn:hover{
+			color: white;
+	}
+</style>
+
+<div class="text-center">
+	<h1 class="display-4 text-white text-primary">TaskaFlow</h1>
+	<h2 class="display-6 text-white text-opacity-50">Streamline your workflow, one task at a time</h2>
+</div>
+<br />
+<br />
+<div class="d-grid gap-2 col-6 mx-auto">
+	<button type="button" class="btn categoryBtn" href="\Home\Category">Create Category</button>
+	<button type="button" class="btn taskBtn" href="\Home\Tasks">View Current Tasks</button>
+</div>
+
+@* <script>
+	const button = document.querySelector('.taskBtn');
+	const targetDiv = document.getElementById('tasks');
+
+	button.addEventListener('click', () => {
+		targetDiv.scrollIntoView({ behavior: "smooth" });
+	});
+</script> *@
+
