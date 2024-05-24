@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DBTaskManagementContextSampleConnection") ?? throw new InvalidOperationException("Connection string 'DBTaskManagementContextSampleConnection' not found.");
 
 builder.Services.AddDbContext<DBTaskManagementContextSample>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<TaskManagementProject.Models.TaskManagementDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<TaskManagementProjectUser>().AddEntityFrameworkStores<DBTaskManagementContextSample>();
 

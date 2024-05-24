@@ -4,13 +4,9 @@ namespace TaskManagementProject.Models;
 
 public class Category
 {
-	public int ID { get; set; }
-	[Required(ErrorMessage = "Name is required!")]
-	public string? Name { get; set; }
-	[Required(ErrorMessage = "Description is required!")]
-	public string? Description { get; set; }
-	[Required(ErrorMessage = "No of tasks required!"),
-	Range(0, int.MaxValue, ErrorMessage = "Atleast initialize a task!")]
-	public int NoOfTasks { get; set; }
+	public int CategoryId { get; set; }
+	public string CategoryName { get; set; }
+	//public List<Tasks> Tasks { get; set; }
+	public ICollection<Tasks> Tasks { get; set; }
 }
 
