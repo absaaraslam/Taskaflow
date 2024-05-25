@@ -3,169 +3,124 @@
 }
 
 <style>
-
-	#feedback-page {
-		text-align: center;
+	/* Container Styles */
+	.container {
+		padding-top: 30px; /* Add some top padding */
 	}
 
+	/* Title Styles */
+	.display-4,
+	.display-6 {
+		color: #fff; /* White text */
+		text-align: center; /* Center align titles */
+	}
+
+	.display-4 {
+		margin-bottom: 20px; /* Add some space after main title */
+	}
+
+	/* Form Styles */
 	#form-main {
-		width: 100%;
-		float: left;
-		padding-top: 0px;
+		width: 100%; /* Full width */
+		margin: 0 auto; /* Center form horizontally */
+		padding: 30px; /* Add some padding */
+		border-radius: 5px; /* Rounded corners */
+		/* background-color: #f0f0f0; /* Light gray background */ */
 	}
 
-
-
-	.feedback-input {
-		color: #3c3c3c;
-		font-family: Helvetica, Arial, sans-serif;
-		font-weight: 500;
-		font-size: 18px;
-		border-radius: 0;
-		line-height: 22px;
-		background-color: #fbfbfb;
-		padding: 13px 13px 13px 54px;
-		margin-bottom: 10px;
-		width: 100%;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		-ms-box-sizing: border-box;
-		box-sizing: border-box;
-		border: 3px solid rgba(0,0,0,0);
+	.form-group {
+		margin-bottom: 20px; /* Add some space between form elements */
 	}
 
-		.feedback-input:focus {
-			background: #fff;
-			box-shadow: 0;
-			border: 3px solid #3498db;
-			color: #3498db;
-			outline: none;
-			padding: 13px 13px 13px 54px;
+	label {
+		color:aliceblue; /* Darker text for labels */
+		font-weight: bold; /* Bold labels */
+	}
+
+	.form-control {
+		border: 1px solid #ccc; /* Light border for input fields */
+		border-radius: 4px; /* Rounded corners for input fields */
+	}
+
+		.form-control:focus {
+			border-color: #3498db; /* Blue border on focus */
 		}
-
-	.focused {
-		color: #30aed6;
-		border: #30aed6 solid 3px;
-	}
-
-	/* Icons ---------------------------------- */
-	#name {
-		background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
-		background-size: 30px 30px;
-		background-position: 11px 8px;
-		background-repeat: no-repeat;
-	}
-
-		#name:focus {
-			background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
-			background-size: 30px 30px;
-			background-position: 8px 5px;
-			background-position: 11px 8px;
-			background-repeat: no-repeat;
-		}
-
-	#email {
-		background-image: url(http://rexkirby.com/kirbyandson/images/email.svg);
-		background-size: 30px 30px;
-		background-position: 11px 8px;
-		background-repeat: no-repeat;
-	}
-
-		#email:focus {
-			background-image: url(http://rexkirby.com/kirbyandson/images/email.svg);
-			background-size: 30px 30px;
-			background-position: 11px 8px;
-			background-repeat: no-repeat;
-		}
-
-	#comment {
-		background-image: url(http://rexkirby.com/kirbyandson/images/comment.svg);
-		background-size: 30px 30px;
-		background-position: 11px 8px;
-		background-repeat: no-repeat;
-	}
 
 	textarea {
-		width: 100%;
-		height: 150px;
-		line-height: 150%;
-		resize: vertical;
+		resize: vertical; /* Allow resizing textarea height */
 	}
 
-		input:hover, textarea:hover,
-		input:focus, textarea:focus {
-			background-color: white;
+	/* Button Styles */
+	.btn-primary {
+		background-color: #3498db; /* Blue button background */
+		color: #fff; /* White button text */
+		border-color: #3498db; /* Blue button border */
+		border-radius: 4px; /* Rounded corners for button */
+		padding: 10px 20px; /* Adjust button padding */
+		font-weight: bold; /* Bold button text */
+	}
+
+		.btn-primary:hover {
+			background-color: #2980b9; /* Darker blue on hover */
 		}
 
-	#button-blue {
-		font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-		float: left;
+	/* Table Styles */
+	table {
 		width: 100%;
-		border: #fbfbfb solid 4px;
-		cursor: pointer;
-		background-color: #3498db;
-		color: white;
-		font-size: 24px;
-		padding-top: 22px;
-		padding-bottom: 22px;
-		-webkit-transition: all 0.3s;
-		-moz-transition: all 0.3s;
-		transition: all 0.3s;
-		margin-top: -4px;
-		font-weight: 700;
+		border-collapse: collapse; /* Remove table borders */
 	}
 
-		#button-blue:hover {
-			background-color: rgba(0,0,0,0);
-			color: #0493bd;
-		}
-
-	.submit:hover {
-		color: #3498db;
+	th,
+	td {
+		padding: 10px; /* Add padding to table cells */
+		border: 1px solid #ddd; /* Light border for table cells */
 	}
 
-	.ease {
-		width: 0px;
-		height: 74px;
-		background-color: #fbfbfb;
-		-webkit-transition: .3s ease;
-		-moz-transition: .3s ease;
-		-o-transition: .3s ease;
-		-ms-transition: .3s ease;
-		transition: .3s ease;
+	th {
+		background-color: #eee; /* Light gray background for table headers */
 	}
 
-	.submit:hover .ease {
-		width: 100%;
-		background-color: white;
+	.text-white {
+		color: #fff; /* White text for specific elements */
 	}
 
+	.badge {
+		font-size: 14px; /* Adjust badge font size */
+		padding: 5px 10px; /* Adjust badge padding */
+	}
+
+	.badge-success {
+		background-color: #4caf50; /* Green color for completed tasks */
+	}
+
+	.badge-secondary {
+		background-color: #6c757d; /* Gray color for pending tasks */
+	}
 </style>
 
 <div class="text-center">
-	<h1 class="display-4 text-white text-primary">Task Management</h1>
-	<h2 class="display-6 text-white text-opacity-50">Create Tasks</h2>
+	<h1 class="display-4 ">Task Management</h1>
+	<h2 class="display-6 text-opacity-50">Create Tasks</h2>
 </div>
 
-<div class="container mt-5">
-
+<div class="container mt-6">
 	<div id="form-main">
 		<div id="form-div">
 			<form id="createTaskForm">
 				<div class="form-group">
-					<label for="itemName" class="text-white">Task Title:</label>
+					<label for="itemName">Task Title:</label>
 					<input type="text" class="form-control" id="itemName" name="itemName" placeholder="Enter Task Title" required>
 				</div>
 				<div class="form-group">
-					<label for="itemDesc" class="text-white">Task Description:</label>
+					<label for="itemDesc">Task Description:</label>
 					<textarea class="form-control" id="itemDesc" name="itemDesc" placeholder="Enter Task Description" rows="3" required></textarea>
 				</div>
 				<div class="form-group">
-					<label for="dueDate" class="text-white">Due Date:</label>
+					<label for="dueDate">Due Date:</label>
 					<input type="date" class="form-control" id="dueDate" name="dueDate">
 				</div>
 				<div class="form-group">
-					<label for="category" class="text-white">Category:</label>
+					<label for="category">Category:</label>
 					<select class="form-control" id="category" name="category" required>
 						<option value="" disabled selected>Select a Category</option>
 					</select>
@@ -176,17 +131,16 @@
 	</div>
 
 	<br />
-	<br />
-	<br />
+	
 	<h2 class="display-6 text-white text-opacity-50">No Of Tasks</h2>
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th scope="col" class="text-white">ID</th>
-				<th scope="col" class="text-white">Task Title</th>
-				<th scope="col" class="text-white">Description</th>
-				<th scope="col" class="text-white">Due Date</th>
-				<th scope="col" class="text-white">Completed</th>
+				<th class="text-white" scope="col">ID</th>
+				<th class="text-white" scope="col">Task Title</th>
+				<th class="text-white" scope="col">Description</th>
+				<th class="text-white" scope="col">Due Date</th>
+				<th class="text-white" scope="col">Completed</th>
 			</tr>
 		</thead>
 		<tbody id="tasksList">

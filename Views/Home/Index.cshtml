@@ -6,29 +6,34 @@
 	ViewData["Title"] = "Home Page";
 }
 <style>
-	.categoryBtn {
+	.categoryLink {
 		background-image: linear-gradient(to left, #fbe7a2,#fdf5da); /* Adjust colors */
 		border: none;
 		color: black;
 		padding: 10px 20px;
 		border-radius: 10px;
 		font-size: 20px;
-	}
-	.categoryBtn:hover{
-			color: #30294d;
+		cursor: pointer;  /* Add cursor pointer for hover effect */
+		text-decoration: none;  /* Remove underline */
 	}
 
-	.taskBtn {
+	.taskLink{
 		background-image: linear-gradient(to left, #cdc1fb,#a782f7); /* Adjust colors */
-
 		border: none;
 		color: black;
 		padding: 10px 20px;
 		border-radius: 10px;
 		font-size: 20px;
+		cursor: pointer; /* Add cursor pointer for hover effect */
+		text-decoration: none; /* Remove underline */
 	}
-	.taskBtn:hover{
-			color: white;
+
+	.categoryLink:hover {
+		color: #30294d;
+	}
+
+	.taskLink:hover {
+		color: white;
 	}
 </style>
 
@@ -39,16 +44,84 @@
 <br />
 <br />
 <div class="d-grid gap-2 col-6 mx-auto">
-	<button type="button" class="btn categoryBtn" href="\Home\Category">Create Category</button>
-	<button type="button" class="btn taskBtn" href="\Home\Tasks">View Current Tasks</button>
+	<a class="categoryLink" asp-area="" asp-controller="Home" asp-action="Category">Create Category</a>
+	<a class="taskLink" asp-area="" asp-controller="Home" asp-action="Tasks">View Current Tasks</a>
 </div>
 
-@* <script>
-	const button = document.querySelector('.taskBtn');
-	const targetDiv = document.getElementById('tasks');
 
-	button.addEventListener('click', () => {
-		targetDiv.scrollIntoView({ behavior: "smooth" });
-	});
-</script> *@
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-md-6 mx-auto">
+			<div class="card bg-dark shadow-sm">
+				<div class="card-header d-flex justify-content-between align-items-center">
+					<h5 class="card-title mb-0 text-white">Welcome, @UserManager.GetUserName(User)!</h5>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-6">
+							<div class="h3 text-center mb-3">
+								<span class="text-white" id="totalCategories">0</span>
+							</div>
+							<p class="text-muted text-center">Categories</p>
+						</div>
+						<div class="col-6">
+							<div class="h3 text-center mb-3">
+								<span class="text-white" id="totalTasks">0</span>
+							</div>
+							<p class="text-muted text-center text-white">Total Tasks</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<div class="h3 text-center mb-3">
+								<span class="text-white" id="pendingTasks">0</span>
+							</div>
+							<p class="text-muted text-center text-white">Pending Tasks</p>
+						</div>
+						<div class="col-6">
+							<div class="h3 text-center mb-3">
+								<span class="text-white" id="completedTasks">0</task></span>
+							</div>
+							<p class="text-muted text-center">Completed Tasks</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
+<script>
+	const userName = document.getElementById('userName');
+	const totalCategories = document.getElementById('totalCategories');
+	const totalTasks = document.getElementById('totalTasks');
+	const pendingTasks = document.getElementById('pendingTasks');
+	const completedTasks = document.getElementById('completedTasks');
+
+	// Fetch data to populate counts
+	fetch('http://localhost:5194/api/Categories/GetCategories')
+		.then(response => response.json())
+		.then(data => {
+			totalCategories.textContent = data.length;
+		});
+
+	fetch('http://localhost:5194/api/tasks/GetTasks')
+		.then(response => response.json())
+		.then(data => {
+			let totalTaskCount = 0;
+			let pendingTaskCount = 0;
+			let completedTaskCount = 0;
+			data.forEach(task => {
+				totalTaskCount++;
+				if (task.completed) {
+					completedTaskCount++;
+				} else {
+					pendingTaskCount++;
+				}
+			});
+			totalTasks.textContent = totalTaskCount;
+			pendingTasks.textContent = pendingTaskCount;
+			completedTasks.textContent = completedTaskCount;
+		});
+
+</script>
