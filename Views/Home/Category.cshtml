@@ -1,87 +1,225 @@
-﻿@{
-	ViewData["Title"] = "Category";
+﻿@model TaskManagementProject.Models.Category
+
+@{
+	ViewData["Title"] = "Category Management";
 }
 
+<style>
 
+	#feedback-page {
+		text-align: center;
+	}
 
-    @* <div class="container mt-5">
-        <h2>Add Items</h2>
-        <form id="itemForm">
-            <div class="form-group">
-                <label for="itemName">Category Name:</label>
-                <input type="text" class="form-control" id="itemName" name="itemName" required>
-            </div>
-            <div class="form-group">
-                <label for="itemQuantity">Quantity:</label>
-                <input type="number" class="form-control" id="itemQuantity" name="itemQuantity" required>
-            </div>
-            <button type="button" class="btn btn-primary" id="addItemBtn">Add Category</button>
-        </form>
+	#form-main {
+		width: 100%;
+		float: left;
+		padding-top: 0px;
+	}
 
-        <hr>
+	
 
-        <h2>Items List</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Item Name</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="itemList">
-            </tbody>
-        </table>
-    </div>
+	.feedback-input {
+		color: #3c3c3c;
+		font-family: Helvetica, Arial, sans-serif;
+		font-weight: 500;
+		font-size: 18px;
+		border-radius: 0;
+		line-height: 22px;
+		background-color: #fbfbfb;
+		padding: 13px 13px 13px 54px;
+		margin-bottom: 10px;
+		width: 100%;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+		border: 3px solid rgba(0,0,0,0);
+	}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Initialize an empty array to store items
-            var itemsArray = [];
+		.feedback-input:focus {
+			background: #fff;
+			box-shadow: 0;
+			border: 3px solid #3498db;
+			color: #3498db;
+			outline: none;
+			padding: 13px 13px 13px 54px;
+		}
 
-            $("#addItemBtn").click(function () {
-                debugger
-                var itemName = $("#itemName").val();
-                var itemQuantity = $("#itemQuantity").val();
-                if (itemName != '' && itemQuantity != '') {
-                    // Create an object to represent the item
-                    var item = {
-                        name: itemName,
-                        quantity: itemQuantity
-                    };
+	.focused {
+		color: #30aed6;
+		border: #30aed6 solid 3px;
+	}
 
-                    // Add the item to the array
-                    itemsArray.push(item);
+	/* Icons ---------------------------------- */
+	#name {
+		background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
+		background-size: 30px 30px;
+		background-position: 11px 8px;
+		background-repeat: no-repeat;
+	}
 
-                    // Update the table with the new item
+		#name:focus {
+			background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
+			background-size: 30px 30px;
+			background-position: 8px 5px;
+			background-position: 11px 8px;
+			background-repeat: no-repeat;
+		}
 
+	#email {
+		background-image: url(http://rexkirby.com/kirbyandson/images/email.svg);
+		background-size: 30px 30px;
+		background-position: 11px 8px;
+		background-repeat: no-repeat;
+	}
 
-                    var html = '<tr data-index="' + (itemsArray.length - 1) + '">';
-                    html += '<td>' + itemName + '</td>';
-                    html += '<td>' + itemQuantity + '</td>';
-                    html += '<td><button type="button" class="btn btn-danger deleteBtn">Delete</button></td>';
-                    html += '</tr>';
-                    $("#itemList").append(html);
+		#email:focus {
+			background-image: url(http://rexkirby.com/kirbyandson/images/email.svg);
+			background-size: 30px 30px;
+			background-position: 11px 8px;
+			background-repeat: no-repeat;
+		}
 
-                    // Clear input fields after adding item
-                    $("#itemName").val('');
-                    $("#itemQuantity").val('');
-                } else {
-                    alert("Please fill in all fields!");
-                }
-            });
+	#comment {
+		background-image: url(http://rexkirby.com/kirbyandson/images/comment.svg);
+		background-size: 30px 30px;
+		background-position: 11px 8px;
+		background-repeat: no-repeat;
+	}
 
-            // Delete item
-            $(document).on("click", ".deleteBtn", function () {
-                debugger
+	textarea {
+		width: 100%;
+		height: 150px;
+		line-height: 150%;
+		resize: vertical;
+	}
 
-                var rowIndex = $(this).closest('tr').data('index');
-                // Remove the item from the array
-                itemsArray.splice(rowIndex, 1);
-                // Remove the row from the table
-                $(this).closest('tr').remove();
-            });
-        });
-    </script>
- *@
+		input:hover, textarea:hover,
+		input:focus, textarea:focus {
+			background-color: white;
+		}
+
+	#button-blue {
+		font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+		float: left;
+		width: 100%;
+		border: #fbfbfb solid 4px;
+		cursor: pointer;
+		background-color: #3498db;
+		color: white;
+		font-size: 24px;
+		padding-top: 22px;
+		padding-bottom: 22px;
+		-webkit-transition: all 0.3s;
+		-moz-transition: all 0.3s;
+		transition: all 0.3s;
+		margin-top: -4px;
+		font-weight: 700;
+	}
+
+		#button-blue:hover {
+			background-color: rgba(0,0,0,0);
+			color: #0493bd;
+		}
+
+	.submit:hover {
+		color: #3498db;
+	}
+
+	.ease {
+		width: 0px;
+		height: 74px;
+		background-color: #fbfbfb;
+		-webkit-transition: .3s ease;
+		-moz-transition: .3s ease;
+		-o-transition: .3s ease;
+		-ms-transition: .3s ease;
+		transition: .3s ease;
+	}
+
+	.submit:hover .ease {
+		width: 100%;
+		background-color: white;
+	}
+
+</style>
+<div class="text-center">
+	<h1 class="display-4 text-white text-primary">Category Management</h1>
+	<h2 class="display-6 text-white text-opacity-50">Create Category</h2>
+</div>
+<div class="container mt-5">
+
+	<div id="form-main">
+		<div id="form-div">
+			<form id="createCategoryForm">
+				<div class="form-group">
+					<label for="itemName" class="text-white">Category Name:</label>
+					<input type="text" class="form-control" id="itemName" name="itemName" required>
+				</div>
+				<button type="submit" class="btn btn-primary align-self-center" id="addItemBtn">Add Item</button>
+			</form>
+		</div>
+	</div>
+
+	<br/>
+	<br/>
+	<br/>
+	<h2 class="display-6 text-white text-opacity-50">No Of Categories</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="text-white">ID</th>
+				<th class="text-white">Category Name</th>
+			</tr>
+		</thead>
+		<tbody id="categoriesList">
+			@* dynamically adds Item here *@
+		</tbody>
+	</table>
+</div>
+
+@section Scripts {
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const categoryList = document.getElementById('categoriesList');
+
+			fetch('http://localhost:5194/api/Categories/GetCategories')
+				.then(response => response.json())
+				.then(data => {
+					data.forEach(category => {
+						var newRow = "<tr>" +
+							"<td class='text-white'>" + category.categoryId + "</td>" +
+							"<td class='text-white'>" + category.categoryName + "</td>" +
+							"</tr>";
+						$("#categoriesList").append(newRow);
+					});
+				});
+
+			const createCategoryForm = document.getElementById('createCategoryForm');
+			createCategoryForm.addEventListener('submit', (event) => {
+				event.preventDefault(); // Prevent default form submission
+				console.log('aya')
+				const categoryName = document.getElementById('categoryName').value;
+
+				// Send a POST request to create the category
+				fetch('http://localhost:5194/api/Categories/PostCategory', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ CategoryName: categoryName })
+				})
+					.then(response => response.json())
+					.then(data => {
+						// Handle successful creation or display any errors
+						if (response.ok) {
+							console.log("Category created successfully:", data);
+							// Optionally, clear the form or update the UI
+						} else {
+							console.error("Error creating category:", response.statusText);
+							// Display an error message to the user
+						}
+					});
+			});
+		});
+	</script>
+}
