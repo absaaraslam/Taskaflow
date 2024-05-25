@@ -10,7 +10,7 @@ using TaskManagementProject.Models;
 namespace TaskManagementProject.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController] 
     public class TasksController : ControllerBase
     {
         private readonly TaskManagementDbContext _context;
@@ -22,7 +22,8 @@ namespace TaskManagementProject.Controllers
 
         // GET: api/Tasks
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Tasks>>> GetTasks()
+		[Route("GetTasks")]
+		public async Task<ActionResult<IEnumerable<Tasks>>> GetTasks()
         {
             return await _context.Tasks.ToListAsync();
         }
@@ -73,7 +74,8 @@ namespace TaskManagementProject.Controllers
 
         // POST: api/Tasks
         [HttpPost]
-        public async Task<ActionResult<Tasks>> PostTasks(Tasks tasks)
+		[Route("PostTasks")]
+		public async Task<ActionResult<Tasks>> PostTasks(Tasks tasks)
         {
             _context.Tasks.Add(tasks);
             await _context.SaveChangesAsync();
